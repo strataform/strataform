@@ -1,0 +1,22 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: strataform-dev
+  region: eu-west-2
+
+iam:
+  withOIDC: true
+
+nodeGroups:
+  - name: standard-workers
+    labels: { role: workers }
+    instanceType: t3.xlarge
+    minSize: 3
+    maxSize: 5
+    desiredCapacity: 3
+    volumeSize: 100
+    ssh:
+      allow: false
+    privateNetworking: true
+
